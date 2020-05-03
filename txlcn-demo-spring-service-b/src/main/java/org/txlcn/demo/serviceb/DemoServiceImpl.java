@@ -33,7 +33,7 @@ public class DemoServiceImpl implements DemoService {
     @TxcTransaction(propagation = DTXPropagation.SUPPORTS)
     @Transactional
     public String rpc(String value) {
-
+        System.out.println("RPC");
 
         Demo demo = new Demo();
         demo.setGroupId(TracingContext.tracing().groupId());
@@ -41,6 +41,7 @@ public class DemoServiceImpl implements DemoService {
         demo.setAppName(Transactions.getApplicationId());
         demo.setCreateTime(new Date());
         demoMapper.save(demo);
+        System.out.println("saved");
         return "ok-service-b";
     }
 }
